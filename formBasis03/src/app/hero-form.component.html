@@ -1,25 +1,30 @@
 <div class="container">
     <h1>Hero Form</h1>
-    <form>
+    <form #heroForm="ngForm">
+    <!--angular会在form标签上自动创建并添加一个ngForm指令，它会控制带有ngModel指令和name属性的元素，监听它们的属性及有效性。附：在表单中使用[(ngModel)]时，必须要定义name属性，因为angular用name属性注册控件（然后追踪变化？）-->
+        {{diagmostic}}
+        <!--验证三个元素是否都已双向绑定了-->
         <div class="form-group">
             <label for="name">Name</label>
             <br/>
-            <input type="text" class="form-control" id="name" required>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name">
+            <!--ngModel绑定到当前元素值，[]表示将组件属性model的值显示到当前元素的视图上；()表示当当前元素的值发生改变时，修改组件属性model.name的值。借助ngModel指令[()]就完成了双向绑定-->
+            TODO:remove when down.{{model.name}}
         </div>
         
         
         <div class="form-group">
             <label for="alterEgo">AlterEgo</label>
             <br/>
-            <input type="text" class="form-control" id="alterEgo">
+            <input type="text" class="form-control" id="alterEgo" [(ngModel)]="model.alterEgo" name="alterEgo">
         </div>
         
         
         <div class="form-group">
             <label for="power">Hero Power</label>
             <br/>
-            <select class="form-control" id="power" required>
-                <option *ngFor="let pow of powers" [value]="pow">{{pow}}</option>
+            <select class="form-control" id="power" required [(ngModel)]="model.power" name="power">
+                <option *ngFor="let pow of powers" >{{pow}}</option>
             </select>
         </div>
         
