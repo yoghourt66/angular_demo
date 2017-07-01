@@ -7,9 +7,13 @@
         <div class="form-group">
             <label for="name">Name</label>
             <br/>
-            <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name">
+            <input type="text" class="form-control" id="name" required [(ngModel)]="model.name" name="name" #spy>
+            <br/>
             <!--ngModel绑定到当前元素值，[]表示将组件属性model的值显示到当前元素的视图上；()表示当当前元素的值发生改变时，修改组件属性model.name的值。借助ngModel指令[()]就完成了双向绑定-->
             TODO:remove when down.{{model.name}}
+            <br/>
+            <!--ngModel指令不仅可双向数据绑定，还可以跟踪标记元素的状态（是否访问过、元素的值是否改变、当前值是否有效），每种状态都对应两个CSS类（真/假），可通过className属性查看。我们可定义不同的CSS样式，对跟踪的状态给出视觉反馈。-->
+            TODO:remove this:{{spy.className}}
         </div>
         
         
