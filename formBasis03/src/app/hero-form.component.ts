@@ -22,4 +22,9 @@ export class HeroFormComponent{
   //TODO:remove when done
   get diagmostic(){return JSON.stringify(this.model);}
   //实时把组件属性model的值用JSON的形式返回
+  
+  newHero(){
+    this.model = new Hero(42,"","");
+    //注意调用Hero模型时的参数要与定义匹配。
+  }
 }
