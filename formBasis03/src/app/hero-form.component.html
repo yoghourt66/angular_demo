@@ -1,4 +1,5 @@
-<div class="container">
+<div class="container" [hidden]="submitted">
+<!--通过绑定hidden属性控制区域切换-->
     <h1>Hero Form</h1>
     <form #heroForm="ngForm" (ngSubmit)="onSubmit()">
     <!--angular会在form标签上自动创建并添加一个ngForm指令，它会控制带有ngModel指令和name属性的元素，监听它们的属性及有效性。附：在表单中使用[(ngModel)]时，必须要定义name属性，因为angular用name属性注册控件（然后追踪变化？）-->
@@ -52,4 +53,23 @@
         <button type="button" class="btn btn-default" (click)="newHero();heroForm.reset()">New Hero</button>with reset
         <!--清除标记 ?为什么清不清除看不到区别？ -->
     </form>
+</div>
+
+<div [hidden]="!submitted">
+    <p>submitted:{{submitted}}</p>
+    <h2>You submitted the following:</h2>
+    <div class="row">
+        <div class="col-xs-3">Name</div>
+        <div class="col-xs-9 pull-left">{{model.name}}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">Alter Ego</div>
+        <div class="col-xs-9 pull-left">{{model.alterEgo}}</div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3">Power</div>
+        <div class="col-xs-9 pull-left">{{model.power}}</div>
+    </div>
+    <br/>
+    <button class="btn btn-primary" (click)="submitted=false">Edit</button>
 </div>
