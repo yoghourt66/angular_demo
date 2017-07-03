@@ -1,6 +1,6 @@
 <div class="container">
     <h1>Hero Form</h1>
-    <form #heroForm="ngForm">
+    <form #heroForm="ngForm" (ngSubmit)="onSubmit()">
     <!--angular会在form标签上自动创建并添加一个ngForm指令，它会控制带有ngModel指令和name属性的元素，监听它们的属性及有效性。附：在表单中使用[(ngModel)]时，必须要定义name属性，因为angular用name属性注册控件（然后追踪变化？）-->
         {{diagmostic}}
         <!--验证三个元素是否都已双向绑定了-->
@@ -43,7 +43,8 @@
             <!--无效？-->
         </div>
         
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="btn btn-success" [disabled]="!heroForm.form.valid">Submit</button>
+        <!--将表单的总体有效性绑定到按钮的disabled属性上，若值无效则提交按钮被禁用。也看不到效果？-->
         
         <button type="button" class="btn btn-default" (click)="newHero()">New Hero</button>without reset
         <!--点击了New Hero后name输入框并不是全新的（虽然生成了新的Hero给model），表单仍记得在点击前输入的名字。也就是说更换了英雄即model组件属性，并不会重置控件的pristine原始状态。所以依然会有错误信息-->
