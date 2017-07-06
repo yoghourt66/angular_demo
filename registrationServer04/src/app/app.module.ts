@@ -4,6 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes.component';
 import { HeroListComponent } from './hero-list.component';
+import { Logger } from './logger.service';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,7 @@ import { HeroListComponent } from './hero-list.component';
   imports: [
     BrowserModule
   ],
-  providers: [],
+  providers: [Logger],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
