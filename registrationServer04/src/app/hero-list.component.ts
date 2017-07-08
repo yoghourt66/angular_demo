@@ -16,7 +16,7 @@ import {HeroService} from './hero.service';
 export class HeroListComponent{
 //heroes = HEROES;
 
-  heroes:Hero[];
+  heroes:Hero[];    //声明heroes变量为Hero类型的数组
   constructor(heroService:HeroService){
     this.heroes = heroService.getHeroes();
   }
