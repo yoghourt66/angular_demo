@@ -6,10 +6,33 @@ export class Hero{
   name: string;
 }
 
+//HEROES是一个由Hero类的实例构成的数组
+const HEROES: Hero[] = [
+  { id: 11, name: 'Mr. Nice' },
+  { id: 12, name: 'Narco' },
+  { id: 13, name: 'Bombasto' },
+  { id: 14, name: 'Celeritas' },
+  { id: 15, name: 'Magneta' },
+  { id: 16, name: 'RubberMan' },
+  { id: 17, name: 'Dynama' },
+  { id: 18, name: 'Dr IQ' },
+  { id: 19, name: 'Magma' },
+  { id: 20, name: 'Tornado' }
+];
+
 @Component({
   selector: 'app-root',
   template: `
     <h1>{{title}}</h1>
+    
+    <h2>My Heroes</h2>
+    <ul class="heroes">
+        <li *ngFor="let hero of heroes">
+            <!--each hero goes here-->
+            <span class="badge">{{hero.id}}</span>{{hero.name}}
+        </li>
+    </ul>
+    
     <h2>{{hero.name}} details!</h2>
     <div><label>id: </label>{{hero.id}}</div>
     <div>
@@ -17,15 +40,69 @@ export class Hero{
         <input [(ngModel)]="hero.name" placeholder="name">
     </div>
   `,
-  styleUrls: ['./app.component.css']
+  styles:[`
+    .selected{
+        background-color:#CFD8DC !important;
+        color:white;
+    }
+    .heroes{
+        margin:0 0 2em 0;
+        list-style-type:none;
+        padding:0;
+        width:15em;
+    }
+    .heroes li{
+        cursor:pointer;
+        position:relative;
+        left:0;
+        background-color:#EEE;
+        margin:.5em;
+        padding:.3em 0;
+        height:1.6em;
+        border-radius:4px;
+    }
+    .heroes li .selected:hover{
+        backgroung-color:#BBD8DC !important;
+        color:white;
+    }
+    .heroes li:hover{
+        color:#607D8B;
+        background-color:#DDD;
+        left:1em;
+    }
+    .heroes .text{
+        position:relative;
+        top:-3px;
+    }
+    .heroes .badge{
+        display:inline-block;
+        font-size:small;
+        color:white;
+        padding:0.8em 0.7em 0 0.7em;
+        background-color:#607D8B;
+        line-height:1em;
+        position:relative;
+        left:-1px;
+        top:-4px;
+        height:1.8em;
+        margin-right:0.8em;
+        border-radius:4px 0 0 4px;
+    }
+  `]
 })
 export class AppComponent {
   title = 'Tour of Heroes';
+  
   //hero = 'Windstorm';
   
-  hero: Hero={
-    id: 1,
-    name: 'Windstorm'
-  }
+  //hero: Hero={
+  //在没有提供数据的服务时，要定义heroes的数据类型
+    //id: 1,
+    //name: 'Windstorm'
+  //}
+  
+  //创建组件属性，以供绑定
+  heroes = HEROES;
+  hero = HEROES[0];
 }
 
