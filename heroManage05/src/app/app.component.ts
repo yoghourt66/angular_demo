@@ -1,24 +1,7 @@
 import { Component } from '@angular/core';
+import { Hero } from './hero';
+import {HeroService} from './hero.service';
 
-//定义hero类
-export class Hero{
-  id: number;
-  name: string;
-}
-
-//HEROES是一个由Hero类的实例构成的数组
-const HEROES: Hero[] = [
-  { id: 11, name: 'Mr. Nice' },
-  { id: 12, name: 'Narco' },
-  { id: 13, name: 'Bombasto' },
-  { id: 14, name: 'Celeritas' },
-  { id: 15, name: 'Magneta' },
-  { id: 16, name: 'RubberMan' },
-  { id: 17, name: 'Dynama' },
-  { id: 18, name: 'Dr IQ' },
-  { id: 19, name: 'Magma' },
-  { id: 20, name: 'Tornado' }
-];
 
 @Component({
   selector: 'app-root',
@@ -32,15 +15,8 @@ const HEROES: Hero[] = [
             <span class="badge">{{hero.id}}</span>{{hero.name}}
         </li>
     </ul>
-    
-    <div *ngIf="selectedHero">
-        <h2>{{selectedHero.name}} details!</h2>
-        <div><label>id: </label>{{selectedHero.id}}</div>
-        <div>
-            <label>name: </label>
-            <input [(ngModel)]="selectedHero.name" placeholder="name">
-        </div>
-    </div>
+    <hero-detail [hero]="selectedHero"><hero-detail>
+    <!--父组件通过把它的selectedHero属性绑定到子组件的hero属性上，告诉子组件显示哪个英雄，hero为绑定目标-->
   `,
   styles:[`
     .selected{
@@ -90,10 +66,12 @@ const HEROES: Hero[] = [
         margin-right:0.8em;
         border-radius:4px 0 0 4px;
     }
-  `]
+  `],
+  providers:[HeroService]
 })
 export class AppComponent {
   title = 'Tour of Heroes';
+  
   
   //hero = 'Windstorm';
   
@@ -104,8 +82,14 @@ export class AppComponent {
   //}
   
   //创建组件属性，以供绑定
-  heroes = HEROES;
-  hero = HEROES[0];
+  //heroes = HEROES;
+  //hero = HEROES[0];
+  
+  heroes:Hero[];
+  
+  constructor(private heroService:HeroService){
+    this.heroes = this.heroService.getHeroes();
+  }
   
   selectedHero:Hero;
   onSelect(hero:Hero): void{
