@@ -7,9 +7,14 @@ import {HEROES} from './mock-heroes';
 
 @Injectable()
 export class HeroService{
-    getHeroes():Hero[]{
-        return HEROES;
-    }
+    //getHeroes():Hero[]{
+    //    return HEROES;
+    //}
+    
+      //异步调用getHeroes方法
+  getHeroes():Promise<Hero[]>{
+    return Promise.resolve(HEROES);
+  }
 }
 //HeroService可以从任何地方获取Hero数据——Web服务、本地存储或模拟数据源。
 //从组件中抽离服务意味着可以随时更改这些实现方式，而不影响需要这些数据的组件。

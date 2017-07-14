@@ -88,12 +88,30 @@ export class AppComponent {
   heroes:Hero[];
   
   constructor(private heroService:HeroService){
-    this.heroes = this.heroService.getHeroes();
+    //this.heroes = this.heroService.getHeroes();
+    //构造函数获取数据的操作用生命周期钩子代替。
   }
   
   selectedHero:Hero;
   onSelect(hero:Hero): void{
     this.selectedHero = hero;
   }
+  
+  
+  //生命周期钩子
+  ngOnInit(): void{
+    this.getHeroes();
+  }
+  
+  //getHeroes():void{
+    //this.heroes = this.heroService.getHeroes();
+  //}
+  
+  getHeroes():void{
+    this.heroService.getHeroes().then(heroes=>this.heroes=heroes);
+    //一旦承诺的事情被成功解决，把回调函数作为参数传给承诺对象的then方法。
+  }
+
+  
 }
 
