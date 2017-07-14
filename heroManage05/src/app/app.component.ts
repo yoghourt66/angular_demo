@@ -104,12 +104,17 @@ export class AppComponent {
   }
   
   //getHeroes():void{
-    //this.heroes = this.heroService.getHeroes();
+  //  this.heroes = this.heroService.getHeroes();
   //}
   
   getHeroes():void{
+    //无延迟异步加载
     this.heroService.getHeroes().then(heroes=>this.heroes=heroes);
+    
+    //慢速异步加载
+    //this.heroService.getHeroesSlowly().then(heroes=>this.heroes=heroes);
     //一旦承诺的事情被成功解决，把回调函数作为参数传给承诺对象的then方法。
+    //此时页面中不需要heroes数据的地方先渲染，2s后，需要用heroes数据渲染的视图后渲染出来。不必等所有数据全部加载完成后整体渲染。
   }
 
   
