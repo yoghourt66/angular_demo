@@ -6,6 +6,7 @@ import {FormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
 import { HeroesComponent } from './heroes.component';
 import { HeroDetailComponent } from './hero-detail.component';
+import { DashboardComponent } from './dashboard.component';
 
 import { HeroService } from './hero.service';
 
@@ -13,7 +14,8 @@ import { HeroService } from './hero.service';
   declarations: [
     AppComponent,
     HeroesComponent,
-    HeroDetailComponent
+    HeroDetailComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -22,6 +24,22 @@ import { HeroService } from './hero.service';
     {
         path:'heroes',
         component:HeroesComponent
+    },
+    {
+        path:'dashboard',
+        component:DashboardComponent
+    },
+    {
+        //添加重定向路由
+        path:'',
+        redirectTo:'/dashboard',
+        pathMatch:'full'
+    },
+    {
+        //带参数路由（：占位符）
+        path:'detail/:id',
+        component:HeroDetailComponent
+        
     }
     ])
   ],
