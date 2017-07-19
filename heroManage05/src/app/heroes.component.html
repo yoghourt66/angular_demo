@@ -1,0 +1,16 @@
+<h2>My Heroes</h2>
+<ul class="heroes">
+    <li *ngFor="let hero of heroes" (click)="onSelect(hero)" [class.selected]="hero===selectedHero">
+        <!--each hero goes here-->
+        <span class="badge">{{hero.id}}</span>{{hero.name}}
+    </li>
+</ul>
+
+<!--<hero-detail [hero]="selectedHero"><hero-detail>-->
+<!--父组件通过把它的selectedHero属性绑定到子组件的hero属性上，告诉子组件显示哪个英雄，hero为绑定目标-->
+
+<!--添加mini版英雄详情-->
+<div *ngIf="selectedHero">
+    <h2>{{selectedHero.name | uppercase}} is my hero</h2>
+    <button (click)="gotoDetail()">View Details</button>
+</div>
