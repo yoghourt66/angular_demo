@@ -12,11 +12,12 @@ import { Hero } from './hero';
 @Component({
     selector:'hero-detail',
     templateUrl:'./hero-detail.component.html',
-
+    styleUrls: ['./hero-detail.component.css'],
 })
 
 export class HeroDetailComponent implements OnInit{
-    @Input() hero:Hero;
+    //@Input() 
+    hero:Hero;
     //绑定目标必须是一个输入属性（或者输出属性），可在heroes.component模板的<hero-detail>标签中查看
     
     constructor(
