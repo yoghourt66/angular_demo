@@ -55,7 +55,7 @@ export class HeroesComponent implements OnInit{
   
   getHeroes():void{
     //无延迟异步加载
-    this.heroService.getHeroes().then(heroes=>this.heroes=heroes);
+    this.heroService.getHeroes().map(heroes=>this.heroes=heroes);
     
     //慢速异步加载
     //this.heroService.getHeroesSlowly().then(heroes=>this.heroes=heroes);
